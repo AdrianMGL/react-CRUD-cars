@@ -1,0 +1,25 @@
+*,
+table,
+body,
+tr,
+td,
+th {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-primary: #62b4ff;
+  --color-secondary: #667f97;
+  --color-thirt: #ff6377;
+  --color-four: #2dd67b;
+  --color-four-hover: hsla(148, 67%, 51%, 0.35);
+
+  --color-white: #fff;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: #f1f2f3;
+}
