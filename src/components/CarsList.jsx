@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
 const CarsList = ({ cars, selectCar, getCars }) => {
@@ -11,6 +11,24 @@ const CarsList = ({ cars, selectCar, getCars }) => {
       .catch((error) => console.log(error.response));
   };
 
+  /** */
+  const [page, setPage] = useState(1);
+  const numberPage = 15;
+  const lastIndex = page * numberPage;
+  const firstIndex = lastIndex - numberPage;
+  const carsPaginated = cars.slice(firstIndex, lastIndex);
+  // console.log(carsPaginated);
+  const lastPage = Math.ceil(cars.length / numberPage);
+  //console.log(lastPage);
+
+  //
+  const numbers = [];
+
+  for (let i = 1; i <= lastPage; i++) {
+    numbers.push(i);
+  }
+
+  /** */
   return (
     <div className="list">
       <div>
@@ -30,7 +48,7 @@ const CarsList = ({ cars, selectCar, getCars }) => {
             </tr>
           </thead>
           <tbody className="table__body">
-            {cars.map((car) => (
+            {carsPaginated.map((car) => (
               <tr key={car.id} className="table__body-tr">
                 <td>{car.id}</td>
                 <td>{car.brand}</td>
@@ -53,6 +71,32 @@ const CarsList = ({ cars, selectCar, getCars }) => {
             ))}
           </tbody>
         </table>
+
+        <div className="pagination">
+          <button
+            onClick={() => setPage(page - 1)}
+            disabled={page === 1}
+            className="btn-page"
+          >
+            {"<"} Prev
+          </button>
+          {numbers.map((number) => (
+            <button
+              key={number}
+              onClick={() => setPage(number)}
+              className="btn-page"
+            >
+              {number}
+            </button>
+          ))}
+          <button
+            onClick={() => setPage(page + 1)}
+            disabled={page === lastPage}
+            className="btn-page"
+          >
+            Next {">"}
+          </button>
+        </div>
       </div>
     </div>
   );

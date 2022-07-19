@@ -15,11 +15,11 @@ th {
   --color-thirt: #ff6377;
   --color-four: #2dd67b;
   --color-four-hover: hsla(148, 67%, 51%, 0.35);
-
   --color-white: #fff;
 }
 
 body {
   font-family: "Montserrat", sans-serif;
   background-color: #f1f2f3;
+  user-select: none;
 }
